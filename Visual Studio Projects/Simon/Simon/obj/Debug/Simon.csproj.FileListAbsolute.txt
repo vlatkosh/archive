@@ -1,0 +1,10 @@
+D:\vlatko\GithubRepos\Simon\Simon\bin\Debug\Simon.exe.config
+D:\vlatko\GithubRepos\Simon\Simon\bin\Debug\Simon.exe
+D:\vlatko\GithubRepos\Simon\Simon\bin\Debug\Simon.pdb
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.csprojResolveAssemblyReference.cache
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.Properties.Resources.resources
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.csproj.GenerateResource.Cache
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.exe
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.pdb
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.GameForm.resources
+D:\vlatko\GithubRepos\Simon\Simon\obj\Debug\Simon.AboutForm.resources
