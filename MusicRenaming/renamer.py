@@ -1,20 +1,12 @@
 import os
 import eyed3
 
-
 def fix_name(name):
     """Removes illegal characters for file paths in Windows"""
     forbidden = "<>:\"/\\|?*"
     for character in forbidden:
         name = name.replace(character, "")
     return name
-
-
-def is_music_file(filename):
-	extensions = ['.mp3', '.flac', '.mp4', '.m4a', '.m4b', '.m4p', '.ogg', '.wav', '.webm']
-	ext = os.path.splittext(filename)[1]
-	return ext in extensions
-
 
 def move_all_to_root(rootdir, currdir):
     """
@@ -24,9 +16,8 @@ def move_all_to_root(rootdir, currdir):
         filepath = os.path.join(currdir, filename)
         if os.path.isdir(filepath):
             move_all_to_root(rootdir, filepath)
-        elif is_music_file(filename):
+        elif filename.endswith(".mp3"):
             os.rename(filepath, os.path.join(rootdir, filename))
-
 
 def delete_empty_folders(directory, removeThis=False):
     """
@@ -44,16 +35,13 @@ def delete_empty_folders(directory, removeThis=False):
         else:
             empty = False
     if empty and removeThis:
-        print("Removing", directory)
         os.rmdir(directory)
     return empty
-
 
 def bad_tag(tag):
     if tag is None:
         return True
     return False
-
 
 def move_to_folders(directory):
     """
@@ -65,7 +53,8 @@ def move_to_folders(directory):
     for filename in os.listdir(directory):
         filepath = os.path.join(directory, filename)
         
-        if not os.path.isfile(filepath) or not is_music_file(filename):
+        if not os.path.isfile(filepath) or not filename.endswith(".mp3"):
+            #os.rename(filepath, filepath + ".mp3")
             continue
 
         audiofile = eyed3.load(filepath)
@@ -94,19 +83,16 @@ def move_to_folders(directory):
         num = audiofile.tag.track_num[0]
         if not num is None:
             newname = newname + str(num).zfill(2) + " "
-        extension = os.path.splittext(filename)[1]
-        newname = newname + artist + " - " + title + extension
+        newname = newname + artist + " - " + title + ".mp3"
         
         newpath = os.path.join(newfolderpath, newname)
         os.rename(filepath, newpath)
 
-
 def main():
-    directory = "E:\\Vlatko\\Music"
+    directory = "C:\\Users\\Vlatko\\Downloads"
     move_all_to_root(directory, directory)
     delete_empty_folders(directory)
     move_to_folders(directory)
-
 
 if __name__ == "__main__":
     main()
